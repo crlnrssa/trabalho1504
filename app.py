@@ -6,6 +6,26 @@ app = Flask(__name__)
 estoque = {}
 proximo_id = 1
 
+# Produtos padrão
+produtos_iniciais = [
+    {"nome": "Mouse sem fio", "quantidade": 50, "valor": 79.90},
+    {"nome": "Notebook Dell", "quantidade": 10, "valor": 3999.00},
+    {"nome": "HD Externo 1TB", "quantidade": 20, "valor": 299.99},
+    {"nome": "Monitor 24''", "quantidade": 15, "valor": 899.90}
+]
+
+
+# Inserindo os produtos padrão no estoque
+for produto in produtos_iniciais:
+    estoque[proximo_id] = {
+        "id": proximo_id,
+        "nome": produto["nome"],
+        "quantidade": produto["quantidade"],
+        "valor": float(produto["valor"])
+    }
+    proximo_id += 1
+
+
 # Rota para listar todos os produtos
 @app.route('/produtos', methods=['GET'])
 def listar_produtos():
